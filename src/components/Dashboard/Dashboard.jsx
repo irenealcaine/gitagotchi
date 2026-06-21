@@ -1,7 +1,6 @@
 import { useMemo } from "react"
 import ProfileHeader from "../ProfileHeader/ProfileHeader"
 import StatsOverview from "../StatsOverview/StatsOverview"
-import Streak from "../Streak/Streak"
 import LanguageChart from "../LanguageChart/LanguageChart"
 import RepoList from "../RepoList/RepoList"
 import ActivityLog from "../ActivityLog/ActivityLog"
@@ -21,9 +20,9 @@ export default function Dashboard({ user, repos, events, openPRs, commitDates })
         <StatsOverview
           totalRepos={user.public_repos}
           openPRsCount={openPRs.length}
+          events={events}
+          commitDates={commitDates}
         />
-
-        <Streak events={events} commitDates={commitDates} />
 
         <LanguageChart repos={repos} />
       </div>

@@ -3,15 +3,27 @@ const XP_COMMIT = 10
 const XP_PR = 50
 const XP_REPO = 100
 
-export function computeTamagotchiState(events) {
+export function computeTamagotchiState(events, commitDates = []) {
   if (!events || events.length === 0) return "sad"
 
   const pushEvents = events.filter((e) => e.type === "PushEvent")
-  if (pushEvents.length === 0) return "sad"
+  if (pushEvents.length === 0 && commitDates.length === 0) return "sad"
 
-  const latestPush = new Date(pushEvents[0].created_at)
   const now = new Date()
-  const hoursDiff = (now - latestPush) / (1000 * 60 * 60)
+
+  const latestEventDate = pushEvents.length > 0
+    ? new Date(pushEvents[0].created_at)
+    : null
+
+  const latestCommitDate = commitDates.length > 0
+    ? new Date(Math.max(...commitDates.map((d) => new Date(d))))
+    : null
+
+  const latestActivity = latestEventDate && latestCommitDate
+    ? new Date(Math.max(latestEventDate, latestCommitDate))
+    : latestEventDate || latestCommitDate
+
+  const hoursDiff = (now - latestActivity) / (1000 * 60 * 60)
 
   if (hoursDiff <= 24) {
     const recentCount = pushEvents
@@ -21,7 +33,10 @@ export function computeTamagotchiState(events) {
       })
       .reduce((sum, e) => sum + (e.payload.size || 1), 0)
 
-    if (recentCount > 3) return "satisfied"
+    const todayStr = now.toISOString().split("T")[0]
+    const recentCommits = commitDates.filter((d) => d === todayStr).length
+
+    if (recentCount + recentCommits > 3) return "satisfied"
     return "ok"
   }
 
@@ -30,8 +45,9 @@ export function computeTamagotchiState(events) {
   return "sad"
 }
 
-export function computeXP(events) {
+export function computeXP(events, repos = []) {
   let xp = 0
+  const seenRepos = new Set()
 
   for (const event of events) {
     switch (event.type) {
@@ -44,9 +60,22 @@ export function computeXP(events) {
       case "CreateEvent":
         if (event.payload.ref_type === "repository") {
           xp += XP_REPO
+          seenRepos.add(event.repo.name)
         }
         break
     }
+  }
+
+  const now = new Date()
+  for (const repo of repos) {
+    const repoName = repo.full_name || repo.name
+    if (seenRepos.has(repoName)) continue
+
+    const created = new Date(repo.created_at)
+    const daysSinceCreation = (now - created) / (1000 * 60 * 60 * 24)
+    if (daysSinceCreation > 7) continue
+
+    xp += XP_REPO
   }
 
   return xp
@@ -165,10 +194,11 @@ export function formatRelativeTime(date) {
   return date.toLocaleDateString("es-ES")
 }
 
-export function getXpHistory(events, limit = 20) {
+export function getXpHistory(events, limit = 20, repos = []) {
   if (!events) return []
 
   const entries = []
+  const seenRepos = new Set()
 
   for (const event of events) {
     let xp = 0
@@ -189,6 +219,7 @@ export function getXpHistory(events, limit = 20) {
         if (event.payload.ref_type === "repository") {
           xp = XP_REPO
           description = `Repo creado: ${event.repo.name}`
+          seenRepos.add(event.repo.name)
         }
         break
     }
@@ -204,6 +235,27 @@ export function getXpHistory(events, limit = 20) {
       })
     }
   }
+
+  const now = new Date()
+  for (const repo of repos) {
+    const repoName = repo.full_name || repo.name
+    if (seenRepos.has(repoName)) continue
+
+    const created = new Date(repo.created_at)
+    const daysSinceCreation = (now - created) / (1000 * 60 * 60 * 24)
+    if (daysSinceCreation > 7) continue
+
+    entries.push({
+      id: `repo_${repo.id}`,
+      xp: XP_REPO,
+      description: `Repo creado: ${repoName}`,
+      timestamp: created,
+      type: "CreateEvent",
+      relative: formatRelativeTime(created),
+    })
+  }
+
+  entries.sort((a, b) => b.timestamp - a.timestamp)
 
   return entries.slice(0, limit)
 }

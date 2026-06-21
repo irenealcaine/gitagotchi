@@ -42,11 +42,26 @@ export default function ActivityLog({ events }) {
 
     return Object.entries(groups)
       .sort((a, b) => b[0].localeCompare(a[0]))
-      .map(([day, entries]) => ({
-        day,
-        label: formatDayHeader(new Date(day + "T12:00:00")),
-        entries,
-      }))
+      .map(([day, entries]) => {
+        const collapsed = []
+        const keyMap = {}
+
+        for (const entry of entries) {
+          const key = `${entry.type}|${entry.description}`
+          if (keyMap[key] !== undefined) {
+            collapsed[keyMap[key]].count++
+          } else {
+            keyMap[key] = collapsed.length
+            collapsed.push({ ...entry, count: 1 })
+          }
+        }
+
+        return {
+          day,
+          label: formatDayHeader(new Date(day + "T12:00:00")),
+          entries: collapsed,
+        }
+      })
   }, [events])
 
   if (groupedDays.length === 0) return null
@@ -58,12 +73,15 @@ export default function ActivityLog({ events }) {
         <div key={group.day} className="activity-day-group">
           <div className="activity-day-header">{group.label}</div>
           <div className="activity-day-entries">
-            {group.entries.map((entry) => (
-              <div key={entry.id} className="activity-entry">
+            {group.entries.map((entry, i) => (
+              <div key={entry.id || i} className="activity-entry">
                 <span className="activity-entry-type">
                   {TYPE_LABELS[entry.type] || entry.type.replace("Event", "")}
                 </span>
                 <span className="activity-entry-desc">{entry.description}</span>
+                {entry.count > 1 && (
+                  <span className="activity-entry-count">x{entry.count}</span>
+                )}
                 <span className="activity-entry-time">{entry.relative}</span>
               </div>
             ))}

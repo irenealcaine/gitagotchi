@@ -2,8 +2,8 @@ import { useMemo } from "react"
 import { getXpHistory } from "../../utils/tamagotchi"
 import "./XpHistory.css"
 
-export default function XpHistory({ events }) {
-  const history = useMemo(() => getXpHistory(events, 15), [events])
+export default function XpHistory({ events, repos }) {
+  const history = useMemo(() => getXpHistory(events, 15, repos), [events, repos])
 
   if (history.length === 0) return null
 

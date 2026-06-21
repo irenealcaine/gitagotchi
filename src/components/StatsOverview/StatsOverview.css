@@ -1,28 +1,37 @@
 .stats-overview {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .stat-card {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 0.6rem 0.4rem;
   background: #1a1a1a;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #2a2a2a;
-  gap: 0.3rem;
+  gap: 0.2rem;
 }
 
 .stat-value {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #ff69b4;
 }
 
+.stat-value--streak {
+  color: #ffc107;
+}
+
+.stat-value--max {
+  color: #4caf50;
+}
+
 .stat-label {
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   color: #888;
   text-align: center;
+  line-height: 1.2;
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { getUser, getUserRepos, getAllEvents, getUserOpenPRs, searchUserCommits } from "../services/github"
-import { save, load, isExpired } from "../services/storage"
+import { save, load, remove, isExpired } from "../services/storage"
 
 export function useGitHubData(username) {
   const [user, setUser] = useState(null)
@@ -11,7 +11,7 @@ export function useGitHubData(username) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(async (force = false) => {
     if (!username) return
 
     setLoading(true)
@@ -20,7 +20,7 @@ export function useGitHubData(username) {
     try {
       const cacheKey = `user_${username}`
 
-      if (!isExpired(cacheKey, 15 * 60 * 1000)) {
+      if (!force && !isExpired(cacheKey, 15 * 60 * 1000)) {
         const cached = load(cacheKey)
         if (cached) {
           setUser(cached.user)
@@ -32,6 +32,8 @@ export function useGitHubData(username) {
           return
         }
       }
+
+      remove(cacheKey)
 
       const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)
 
@@ -79,5 +81,5 @@ export function useGitHubData(username) {
     fetchData()
   }, [fetchData])
 
-  return { user, repos, events, openPRs, commitDates, loading, error, refetch: fetchData }
+  return { user, repos, events, openPRs, commitDates, loading, error, refetch: () => fetchData(true) }
 }

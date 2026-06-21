@@ -67,6 +67,16 @@
   white-space: nowrap;
 }
 
+.activity-entry-count {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #888;
+  background: #2a2a2a;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
 .activity-entry-time {
   color: #555;
   font-size: 0.7rem;

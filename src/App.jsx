@@ -18,7 +18,7 @@ function App() {
   const { user, repos, events, openPRs, commitDates, loading, error, refetch } =
     useGitHubData(username)
 
-  const tamagotchi = useTamagotchi(events)
+  const tamagotchi = useTamagotchi(events, commitDates, repos)
 
   const eventRange = useMemo(() => {
     const range = getEventDateRange(events)
@@ -75,7 +75,7 @@ function App() {
         <div className="app-content">
           <div className="app-sidebar">
             <Tamagotchi {...tamagotchi} eventRange={eventRange} />
-            <XpHistory events={events} />
+            <XpHistory events={events} repos={repos} />
           </div>
           <div className="app-main">
             <Dashboard

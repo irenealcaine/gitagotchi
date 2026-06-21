@@ -7,10 +7,10 @@ import {
   getStateConfig,
 } from "../utils/tamagotchi"
 
-export function useTamagotchi(events) {
+export function useTamagotchi(events, commitDates = [], repos = []) {
   return useMemo(() => {
-    const state = computeTamagotchiState(events)
-    const totalXP = computeXP(events)
+    const state = computeTamagotchiState(events, commitDates)
+    const totalXP = computeXP(events, repos)
     const level = computeLevel(totalXP)
     const progress = computeLevelProgress(totalXP)
     const config = getStateConfig(state)
