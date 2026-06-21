@@ -9,7 +9,6 @@ export default function XpHistory({ events, repos }) {
 
   return (
     <div className="xp-history">
-      <h3 className="xp-history-title">Historial de XP</h3>
       <div className="xp-history-list">
         {history.map((entry) => (
           <div key={entry.id} className="xp-entry">

@@ -2,10 +2,11 @@ import { useState, useMemo } from "react"
 import { load, save } from "./services/storage"
 import { useGitHubData } from "./hooks/useGitHubData"
 import { useTamagotchi } from "./hooks/useTamagotchi"
-import { getEventDateRange } from "./utils/tamagotchi"
+import { computeStreak, getEventDateRange } from "./utils/tamagotchi"
 import UserSearch from "./components/UserSearch/UserSearch"
 import Tamagotchi from "./components/Tamagotchi/Tamagotchi"
 import XpHistory from "./components/XpHistory/XpHistory"
+import Achievements from "./components/Achievements/Achievements"
 import Dashboard from "./components/Dashboard/Dashboard"
 import "./App.css"
 
@@ -20,10 +21,29 @@ function App() {
 
   const tamagotchi = useTamagotchi(events, commitDates, repos)
 
+  const [sidebarTab, setSidebarTab] = useState("xp")
+
   const eventRange = useMemo(() => {
     const range = getEventDateRange(events)
     return range ? new Date(range.oldest).toLocaleDateString("es-ES") : null
   }, [events])
+
+  const maxStreak = useMemo(
+    () => computeStreak(events, commitDates).max,
+    [events, commitDates],
+  )
+
+  const totalCommits = useMemo(
+    () => events
+      .filter((e) => e.type === "PushEvent")
+      .reduce((sum, e) => sum + (e.payload.size || 1), 0),
+    [events],
+  )
+
+  const totalStars = useMemo(
+    () => repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0),
+    [repos],
+  )
 
   function handleSearch(newUsername) {
     setUsername(newUsername)
@@ -75,7 +95,30 @@ function App() {
         <div className="app-content">
           <div className="app-sidebar">
             <Tamagotchi {...tamagotchi} eventRange={eventRange} />
-            <XpHistory events={events} repos={repos} />
+            <div className="sidebar-tabs">
+              <button
+                className={`sidebar-tab ${sidebarTab === "xp" ? "sidebar-tab--active" : ""}`}
+                onClick={() => setSidebarTab("xp")}
+              >
+                Historial XP
+              </button>
+              <button
+                className={`sidebar-tab ${sidebarTab === "achievements" ? "sidebar-tab--active" : ""}`}
+                onClick={() => setSidebarTab("achievements")}
+              >
+                Logros
+              </button>
+            </div>
+            {sidebarTab === "xp" ? (
+              <XpHistory events={events} repos={repos} />
+            ) : (
+              <Achievements
+                maxStreak={maxStreak}
+                totalCommits={totalCommits}
+                level={tamagotchi.level}
+                totalStars={totalStars}
+              />
+            )}
           </div>
           <div className="app-main">
             <Dashboard
