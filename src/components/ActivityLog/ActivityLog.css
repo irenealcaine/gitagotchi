@@ -1,0 +1,74 @@
+.activity-log {
+  padding: 1.25rem;
+  background: #1a1a1a;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+}
+
+.activity-log-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  font-weight: 700;
+}
+
+.activity-day-group {
+  margin-bottom: 0.75rem;
+}
+
+.activity-day-group:last-child {
+  margin-bottom: 0;
+}
+
+.activity-day-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.activity-day-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.activity-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  background: #222;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  font-size: 0.8rem;
+}
+
+.activity-entry-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: #2a2a2a;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.activity-entry-desc {
+  color: #aaa;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-entry-time {
+  color: #555;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}

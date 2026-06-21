@@ -1,0 +1,61 @@
+.language-chart {
+  padding: 1.25rem;
+  background: #1a1a1a;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+}
+
+.language-chart-title {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  font-weight: 700;
+}
+
+.language-chart-empty {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.language-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.language-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.language-bar-name {
+  width: 100px;
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.language-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.language-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.language-bar-pct {
+  width: 40px;
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  flex-shrink: 0;
+}

@@ -1,0 +1,96 @@
+.tamagotchi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.tamagotchi-pet-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tamagotchi-pet {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  transition: background-color 0.5s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.tamagotchi-pet:hover {
+  transform: scale(1.1);
+}
+
+.tamagotchi-glow {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(20px);
+  transition: background-color 0.5s ease;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.25;
+  }
+}
+
+.tamagotchi-status {
+  text-align: center;
+}
+
+.tamagotchi-state-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  transition: color 0.5s ease;
+}
+
+.tamagotchi-level {
+  text-align: center;
+}
+
+.tamagotchi-level-number {
+  font-size: 1rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.tamagotchi-xp-bar {
+  width: 200px;
+  height: 8px;
+  background: #333;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tamagotchi-xp-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.tamagotchi-xp-text {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.tamagotchi-range {
+  font-size: 0.7rem;
+  color: #555;
+  text-align: center;
+}
