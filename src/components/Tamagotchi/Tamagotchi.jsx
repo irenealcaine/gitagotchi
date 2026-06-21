@@ -35,11 +35,6 @@ export default function Tamagotchi({ state, level, progress, totalXP, config, ev
         {progress} / 300 XP · {totalXP} XP
       </div>
 
-      {eventRange && (
-        <div className="tamagotchi-range">
-          Datos desde {eventRange}
-        </div>
-      )}
     </div>
   )
 }

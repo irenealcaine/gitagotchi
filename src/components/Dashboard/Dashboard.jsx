@@ -1,27 +1,23 @@
-import { useMemo } from "react"
 import ProfileHeader from "../ProfileHeader/ProfileHeader"
 import StatsOverview from "../StatsOverview/StatsOverview"
 import LanguageChart from "../LanguageChart/LanguageChart"
 import RepoList from "../RepoList/RepoList"
 import ActivityLog from "../ActivityLog/ActivityLog"
-import { getEventDateRange } from "../../utils/tamagotchi"
 import "./Dashboard.css"
 
 export default function Dashboard({ user, repos, events, openPRs, commitDates }) {
   if (!user) return null
 
-  const range = useMemo(() => getEventDateRange(events), [events])
-
   return (
     <div className="dashboard">
-      <ProfileHeader user={user} />
+      <ProfileHeader user={user} repos={repos} />
 
       <div className="dashboard-grid">
         <StatsOverview
-          totalRepos={user.public_repos}
-          openPRsCount={openPRs.length}
+          repos={repos}
           events={events}
           commitDates={commitDates}
+          openPRsCount={openPRs.length}
         />
 
         <LanguageChart repos={repos} />
@@ -30,13 +26,6 @@ export default function Dashboard({ user, repos, events, openPRs, commitDates })
       <RepoList repos={repos} events={events} />
 
       <ActivityLog events={events} />
-
-      {range && (
-        <div className="dashboard-footer">
-          Datos de actividad basados en eventos disponibles desde el{" "}
-          {new Date(range.oldest).toLocaleDateString("es-ES")}
-        </div>
-      )}
     </div>
   )
 }

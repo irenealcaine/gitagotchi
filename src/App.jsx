@@ -88,6 +88,12 @@ function App() {
           </div>
         </div>
       )}
+
+      {eventRange && (
+        <footer className="app-footer">
+          Datos de actividad basados en eventos disponibles desde el {eventRange}
+        </footer>
+      )}
     </div>
   )
 }

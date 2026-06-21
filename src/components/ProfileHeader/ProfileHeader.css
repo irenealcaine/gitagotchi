@@ -33,7 +33,21 @@
   color: #888;
 }
 
+.profile-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.15rem 0;
+}
+
+.profile-stat {
+  font-size: 0.75rem;
+  color: #aaa;
+  background: #2a2a2a;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
 .profile-date {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #666;
 }
