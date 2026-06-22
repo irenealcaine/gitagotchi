@@ -5,6 +5,30 @@
   border: 1px solid #2a2a2a;
 }
 
+@media (max-width: 480px) {
+  .language-chart {
+    padding: 0.85rem;
+  }
+
+  .language-bar-name {
+    width: 70px;
+    font-size: 0.75rem;
+  }
+
+  .language-bar-pct {
+    width: 32px;
+    font-size: 0.75rem;
+  }
+
+  .language-bar-row {
+    gap: 0.4rem;
+  }
+
+  .language-bars {
+    gap: 0.45rem;
+  }
+}
+
 .language-chart-title {
   margin: 0 0 1rem;
   font-size: 0.95rem;
