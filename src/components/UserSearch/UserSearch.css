@@ -72,3 +72,13 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 380px) {
+  .user-search-form {
+    flex-direction: column;
+  }
+
+  .user-search-button {
+    width: 100%;
+  }
+}
