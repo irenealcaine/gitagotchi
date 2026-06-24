@@ -291,7 +291,7 @@ export function getActivityLog(events) {
         description = `Fork de ${event.repo.name}`
         break
       case "WatchEvent":
-        description = `⭐ ${event.repo.name}`
+        description = `Star ${event.repo.name}`
         break
       case "IssuesEvent":
         description = `Issue ${event.payload.action} en ${event.repo.name}`

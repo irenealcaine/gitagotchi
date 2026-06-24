@@ -1,4 +1,5 @@
 import { useMemo } from "react"
+import { FaStar, FaCodeBranch } from "react-icons/fa"
 import { filterActiveRepos, getCommitCountFromEvents } from "../../utils/tamagotchi"
 import "./RepoList.css"
 
@@ -49,10 +50,10 @@ export default function RepoList({ repos, events }) {
             )}
             <div className="repo-item-stats">
               <span className="repo-stat">
-                ⭐ {repo.stargazers_count}
+                <FaStar /> {repo.stargazers_count}
               </span>
               <span className="repo-stat">
-                🍴 {repo.forks_count}
+                <FaCodeBranch /> {repo.forks_count}
               </span>
               <span className="repo-stat repo-stat-commits">
                 {repo.recentCommits} commits (30d)
