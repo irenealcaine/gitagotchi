@@ -15,23 +15,67 @@
 }
 
 .tamagotchi-pet {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  transition: background-color 0.5s ease, transform 0.3s ease;
+  object-fit: cover;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
-.tamagotchi-pet:hover {
-  transform: scale(1.1);
+.tamagotchi-pet--happy {
+  animation: float 3s ease-in-out infinite;
+}
+
+.tamagotchi-pet--ok {
+  animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+.tamagotchi-pet--hungry {
+  animation: wobble 2s ease-in-out infinite;
+}
+
+.tamagotchi-pet--starving {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.tamagotchi-pet--dead {
+  animation: dead-float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: translateX(0px); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0px); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+@keyframes dead-float {
+  0%, 100% { transform: translateY(0px); opacity: 1; }
+  50% { transform: translateY(-4px); opacity: 0.6; }
 }
 
 .tamagotchi-glow {
   position: absolute;
-  width: 160px;
-  height: 160px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   opacity: 0.15;
   filter: blur(20px);

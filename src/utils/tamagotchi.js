@@ -36,13 +36,13 @@ export function computeTamagotchiState(events, commitDates = []) {
     const todayStr = now.toISOString().split("T")[0]
     const recentCommits = commitDates.filter((d) => d === todayStr).length
 
-    if (recentCount + recentCommits > 3) return "satisfied"
+    if (recentCount + recentCommits > 3) return "happy"
     return "ok"
   }
 
   if (hoursDiff <= 48) return "hungry"
   if (hoursDiff <= 72) return "starving"
-  return "sad"
+  return "dead"
 }
 
 export function computeXP(events, repos = []) {
@@ -141,15 +141,21 @@ export function computeStreak(events, extraDays = []) {
   return { current, max }
 }
 
+import happyImg from "../assets/gitagotchi-happy.png"
+import okImg from "../assets/gitagotchi-ok.png"
+import hungryImg from "../assets/gitagotchi-hungry.png"
+import starvingImg from "../assets/gitagotchi-starving.png"
+import deadImg from "../assets/gitagotchi-dead.png"
+
 export function getStateConfig(state) {
   const states = {
-    satisfied: { color: "#ff69b4", label: "Satisfecho" },
-    ok: { color: "#4caf50", label: "OK" },
-    hungry: { color: "#ffc107", label: "Hambriento" },
-    starving: { color: "#f44336", label: "Famelico" },
-    sad: { color: "#78909c", label: "Triste" },
+    happy: { color: "#ff69b4", label: "Feliz", image: happyImg },
+    ok: { color: "#4caf50", label: "OK", image: okImg },
+    hungry: { color: "#ffc107", label: "Hambriento", image: hungryImg },
+    starving: { color: "#f44336", label: "Famelico", image: starvingImg },
+    dead: { color: "#78909c", label: "Muerto", image: deadImg },
   }
-  return states[state] || states.sad
+  return states[state] || states.dead
 }
 
 export function filterActiveRepos(repos) {

@@ -4,9 +4,10 @@ export default function Tamagotchi({ state, level, progress, totalXP, config, ev
   return (
     <div className="tamagotchi">
       <div className="tamagotchi-pet-wrapper">
-        <div
-          className="tamagotchi-pet"
-          style={{ backgroundColor: config.color }}
+        <img
+          className={`tamagotchi-pet tamagotchi-pet--${state}`}
+          src={config.image}
+          alt={config.label}
         />
         <div className="tamagotchi-glow" style={{ backgroundColor: config.color }} />
       </div>
