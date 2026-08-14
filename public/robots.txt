@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gitagotchi.netlify.app/sitemap.xml

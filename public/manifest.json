@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "Gitagotchi",
   "short_name": "Gitagotchi",
   "description": "Un tamagotchi que vive de tu actividad en GitHub. Alimenta, cuida y evoluciona a tu mascota virtual según tus commits, PRs y contribuciones.",
