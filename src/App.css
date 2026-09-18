@@ -195,13 +195,15 @@
   padding: 1rem;
 }
 
-.app-footer {
-  font-size: 0.75rem;
-  color: #999;
-  text-align: center;
-  padding: 0.5rem 1rem 1rem;
-  border-top: 1px solid #222;
-  margin-top: auto;
+.app-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main-area .user-search {
+  min-height: 100%;
+  flex: 1;
 }
 
 @media (max-width: 768px) {

@@ -21,6 +21,13 @@ const LANDING_MARKUP = `
     <button class="user-search-button" type="submit">Alimentar</button>
   </form>
 </div>
+<footer class="site-footer">
+  <div class="site-footer-links">
+    <a class="site-footer-link" href="mailto:irenealcainealvarez@gmail.com">irenealcainealvarez@gmail.com</a>
+    <a class="site-footer-link" href="https://github.com/irenealcaine" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a class="site-footer-link" href="https://www.linkedin.com/in/irenealcaine/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+</footer>
 `
 
 let html = await readFile(indexPath, "utf8")

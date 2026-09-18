@@ -1,0 +1,39 @@
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.9rem 1rem 1.2rem;
+  border-top: 1px solid #222;
+  margin-top: auto;
+  text-align: center;
+}
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.site-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: #aaa;
+  text-decoration: none;
+  min-height: 24px;
+  transition: color 0.2s;
+}
+
+.site-footer-link:hover,
+.site-footer-link:focus-visible {
+  color: #ff69b4;
+}
+
+.site-footer-note {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #999;
+}

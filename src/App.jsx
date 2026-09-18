@@ -8,6 +8,7 @@ import Tamagotchi from "./components/Tamagotchi/Tamagotchi"
 import XpHistory from "./components/XpHistory/XpHistory"
 import Achievements from "./components/Achievements/Achievements"
 import Dashboard from "./components/Dashboard/Dashboard"
+import Footer from "./components/Footer/Footer"
 import "./App.css"
 
 function App() {
@@ -55,7 +56,14 @@ function App() {
   }
 
   if (!username) {
-    return <UserSearch onSearch={handleSearch} loading={loading} />
+    return (
+      <div className="app">
+        <div className="app-main-area">
+          <UserSearch onSearch={handleSearch} loading={loading} />
+        </div>
+        <Footer />
+      </div>
+    )
   }
 
   return (
@@ -161,11 +169,13 @@ function App() {
         )}
       </main>
 
-      {eventRange && (
-        <footer className="app-footer">
-          Datos de actividad basados en eventos disponibles desde el {eventRange}
-        </footer>
-      )}
+      <Footer
+        note={
+          eventRange
+            ? `Datos de actividad basados en eventos disponibles desde el ${eventRange}`
+            : null
+        }
+      />
     </div>
   )
 }
