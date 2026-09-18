@@ -5,19 +5,19 @@
   "description": "Un tamagotchi que vive de tu actividad en GitHub. Alimenta, cuida y evoluciona a tu mascota virtual según tus commits, PRs y contribuciones.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#863bff",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
   "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/icon-192.png",
-      "sizes": "192x192",
+      "sizes": "109x109",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "/icon-512.png",
-      "sizes": "512x512",
+      "sizes": "300x300",
       "type": "image/png",
       "purpose": "any maskable"
     }

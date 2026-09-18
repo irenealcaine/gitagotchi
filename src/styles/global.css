@@ -62,6 +62,10 @@ input {
   min-height: 100vh;
 }
 
+html[data-auth] #root {
+  visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

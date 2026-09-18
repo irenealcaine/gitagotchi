@@ -29,7 +29,7 @@ importers:
         version: 19.2.3(@types/react@19.2.17)
       '@vitejs/plugin-react':
         specifier: ^6.0.1
-        version: 6.0.2(vite@8.0.16)
+        version: 6.0.2(vite@8.0.16(@types/node@26.6.1))
       eslint:
         specifier: ^10.3.0
         version: 10.5.0
@@ -44,7 +44,7 @@ importers:
         version: 17.6.0
       vite:
         specifier: ^8.0.12
-        version: 8.0.16
+        version: 8.0.16(@types/node@26.6.1)
 
 packages:
 
@@ -317,6 +317,9 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/node@26.6.1':
+    resolution: {integrity: sha512-VqGJBMCtdhqkBUCcBLvywI0NJ+KLuVzgNnlBUNFOQjqVxzo2lxLUNg1DSey8+u2u6ktswSAxg+s68QLzWHNOuA==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -755,6 +758,9 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
+  undici-types@8.9.0:
+    resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
+
   update-browserslist-db@1.2.3:
     resolution: {integrity: sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==}
     hasBin: true
@@ -1090,6 +1096,11 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/node@26.6.1':
+    dependencies:
+      undici-types: 8.9.0
+    optional: true
+
   '@types/react-dom@19.2.3(@types/react@19.2.17)':
     dependencies:
       '@types/react': 19.2.17
@@ -1098,10 +1109,10 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
-  '@vitejs/plugin-react@6.0.2(vite@8.0.16)':
+  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@26.6.1))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.0.16
+      vite: 8.0.16(@types/node@26.6.1)
 
   acorn-jsx@5.3.2(acorn@8.17.0):
     dependencies:
@@ -1473,6 +1484,9 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
+  undici-types@8.9.0:
+    optional: true
+
   update-browserslist-db@1.2.3(browserslist@4.28.2):
     dependencies:
       browserslist: 4.28.2
@@ -1483,7 +1497,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite@8.0.16:
+  vite@8.0.16(@types/node@26.6.1):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -1491,6 +1505,7 @@ snapshots:
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
+      '@types/node': 26.6.1
       fsevents: 2.3.3
 
   which@2.0.2:

@@ -4,11 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gitagotchi: un tamagotchi que vive de tu actividad en GitHub. Alimenta, cuida y evoluciona a tu mascota virtual según tus commits, PRs y contribuciones." />
-    <meta name="theme-color" content="#863bff" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#0d0d0d" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Gitagotchi" />
     <meta name="google-site-verification" content="JQn0dyfqH15EW7_zINWHVg4ucfYiy0v1bfddDtMZjsU" />
+
+    <script>
+      try {
+        if (window.localStorage.getItem("username")) {
+          document.documentElement.setAttribute("data-auth", "1")
+        }
+      } catch (e) {}
+    </script>
 
     <title>Gitagotchi - Tu mascota virtual de GitHub</title>
 
@@ -18,10 +27,14 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gitagotchi.netlify.app/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Gitagotchi" />
     <meta property="og:title" content="Gitagotchi - Tu mascota virtual de GitHub" />
     <meta property="og:description" content="Un tamagotchi que vive de tu actividad en GitHub. Alimenta, cuida y evoluciona a tu mascota virtual según tus commits, PRs y contribuciones." />
     <meta property="og:image" content="https://gitagotchi.netlify.app/gitagotchi-happy.png" />
-    <meta property="og:site_name" content="Gitagotchi" />
+    <meta property="og:image:width" content="677" />
+    <meta property="og:image:height" content="369" />
+    <meta property="og:image:alt" content="Mascota virtual Gitagotchi en estado feliz" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gitagotchi - Tu mascota virtual de GitHub" />
@@ -37,6 +50,13 @@
       "description": "Un tamagotchi que vive de tu actividad en GitHub. Alimenta, cuida y evoluciona a tu mascota virtual según tus commits, PRs y contribuciones.",
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "Web",
+      "inLanguage": "es",
+      "screenshot": "https://gitagotchi.netlify.app/gitagotchi-happy.png",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Gitagotchi",
+        "url": "https://gitagotchi.netlify.app/"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -47,6 +67,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <h1>Gitagotchi</h1>
+      <p>
+        Introduce tu usuario de GitHub para alimentar a tu mascota virtual según tus commits, PRs y contribuciones.
+        Esta aplicación necesita JavaScript para funcionar.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
