@@ -58,7 +58,7 @@ export default function StatsOverview({ repos, events, commitDates, openPRsCount
         <span className="stat-group-title">Pull Requests</span>
         <div className="stat-group-cards">
           <StatCard value={openPRsCount} label="Abiertas" />
-          <StatCard value={prsMerged} label="Mergeadas" color="#9c27b0" />
+          <StatCard value={prsMerged} label="Mergeadas" color="#ce93d8" />
         </div>
       </div>
 

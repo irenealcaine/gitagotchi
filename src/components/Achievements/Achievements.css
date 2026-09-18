@@ -99,7 +99,7 @@
 
 .achievement-progress-text {
   font-size: 0.65rem;
-  color: #555;
+  color: #9a9a9a;
   white-space: nowrap;
   min-width: 3rem;
   text-align: right;
@@ -111,7 +111,7 @@
 
 .achievement-status {
   font-size: 0.8rem;
-  color: #555;
+  color: #9a9a9a;
   flex-shrink: 0;
 }
 

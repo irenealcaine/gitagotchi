@@ -60,11 +60,19 @@ function App() {
 
   return (
     <div className="app">
+      <a className="skip-link" href="#main-content">
+        Saltar al contenido
+      </a>
       <header className="app-header">
         <span className="app-logo">Gitagotchi</span>
         <div className="app-header-right">
           {user && (
-            <button className="app-refresh" onClick={refetch} title="Actualizar datos">
+            <button
+              className="app-refresh"
+              onClick={refetch}
+              title="Actualizar datos"
+              aria-label="Actualizar datos"
+            >
               ↻
             </button>
           )}
@@ -74,63 +82,84 @@ function App() {
         </div>
       </header>
 
-      {loading && (
-        <div className="app-loading">
-          <div className="app-loading-spinner" />
-          <span>Cargando actividad de {username}...</span>
-        </div>
-      )}
-
-      {error && (
-        <div className="app-error">
-          <p>{error}</p>
-          <div className="app-error-buttons">
-            <button onClick={refetch}>Reintentar</button>
-            <button onClick={handleLogout}>Cambiar usuario</button>
+      <main id="main-content">
+        {loading && (
+          <div className="app-loading" role="status">
+            <div className="app-loading-spinner" aria-hidden="true" />
+            <span>Cargando actividad de {username}...</span>
           </div>
-        </div>
-      )}
+        )}
 
-      {!loading && !error && user && (
-        <div className="app-content">
-          <div className="app-sidebar">
-            <Tamagotchi {...tamagotchi} eventRange={eventRange} />
-            <div className="sidebar-tabs">
-              <button
-                className={`sidebar-tab ${sidebarTab === "xp" ? "sidebar-tab--active" : ""}`}
-                onClick={() => setSidebarTab("xp")}
-              >
-                Historial XP
-              </button>
-              <button
-                className={`sidebar-tab ${sidebarTab === "achievements" ? "sidebar-tab--active" : ""}`}
-                onClick={() => setSidebarTab("achievements")}
-              >
-                Logros
-              </button>
+        {error && (
+          <div className="app-error" role="alert">
+            <p>{error}</p>
+            <div className="app-error-buttons">
+              <button onClick={refetch}>Reintentar</button>
+              <button onClick={handleLogout}>Cambiar usuario</button>
             </div>
-            {sidebarTab === "xp" ? (
-              <XpHistory events={events} repos={repos} />
-            ) : (
-              <Achievements
-                maxStreak={maxStreak}
-                totalCommits={totalCommits}
-                level={tamagotchi.level}
-                totalStars={totalStars}
+          </div>
+        )}
+
+        {!loading && !error && user && (
+          <div className="app-content">
+            <div className="app-sidebar">
+              <Tamagotchi {...tamagotchi} eventRange={eventRange} />
+              <div className="sidebar-tabs" role="tablist" aria-label="Panel lateral">
+                <button
+                  id="tab-xp"
+                  role="tab"
+                  aria-selected={sidebarTab === "xp"}
+                  aria-controls="panel-xp"
+                  className={`sidebar-tab ${sidebarTab === "xp" ? "sidebar-tab--active" : ""}`}
+                  onClick={() => setSidebarTab("xp")}
+                >
+                  Historial XP
+                </button>
+                <button
+                  id="tab-achievements"
+                  role="tab"
+                  aria-selected={sidebarTab === "achievements"}
+                  aria-controls="panel-achievements"
+                  className={`sidebar-tab ${sidebarTab === "achievements" ? "sidebar-tab--active" : ""}`}
+                  onClick={() => setSidebarTab("achievements")}
+                >
+                  Logros
+                </button>
+              </div>
+              <div
+                id="panel-xp"
+                role="tabpanel"
+                aria-labelledby="tab-xp"
+                hidden={sidebarTab !== "xp"}
+              >
+                <XpHistory events={events} repos={repos} />
+              </div>
+              <div
+                id="panel-achievements"
+                role="tabpanel"
+                aria-labelledby="tab-achievements"
+                hidden={sidebarTab !== "achievements"}
+              >
+                <Achievements
+                  maxStreak={maxStreak}
+                  totalCommits={totalCommits}
+                  level={tamagotchi.level}
+                  totalStars={totalStars}
+                />
+              </div>
+            </div>
+            <div className="app-main">
+              <Dashboard
+                user={user}
+                repos={repos}
+                events={events}
+                openPRs={openPRs}
+                commitDates={commitDates}
               />
-            )}
+            </div>
           </div>
-          <div className="app-main">
-            <Dashboard
-              user={user}
-              repos={repos}
-              events={events}
-              openPRs={openPRs}
-              commitDates={commitDates}
-            />
-          </div>
-        </div>
-      )}
+        )}
+      </main>
 
       {eventRange && (
         <footer className="app-footer">

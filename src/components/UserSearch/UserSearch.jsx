@@ -18,7 +18,11 @@ export default function UserSearch({ onSearch, loading }) {
         Introduce tu usuario de GitHub para alimentar a tu mascota
       </p>
       <form onSubmit={handleSubmit} className="user-search-form">
+        <label className="visually-hidden" htmlFor="github-username">
+          Nombre de usuario de GitHub
+        </label>
         <input
+          id="github-username"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}

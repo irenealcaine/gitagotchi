@@ -30,7 +30,7 @@ export default function ProfileHeader({ user, repos }) {
         className="profile-avatar"
       />
       <div className="profile-info">
-        <h2 className="profile-name">{user.name || user.login}</h2>
+        <h1 className="profile-name">{user.name || user.login}</h1>
         <span className="profile-username">@{user.login}</span>
         <div className="profile-meta">
           <span className="profile-stat">{user.followers} seguidores</span>

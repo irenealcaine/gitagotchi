@@ -4,6 +4,22 @@
   flex-direction: column;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: #ff69b4;
+  color: #fff;
+  border-radius: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+}
+
 .app-header {
   display: flex;
   align-items: center;
@@ -44,7 +60,7 @@
 
 .app-refresh:hover {
   color: #e0e0e0;
-  border-color: #555;
+  border-color: #777;
 }
 
 .app-logout {
@@ -153,7 +169,7 @@
   flex: 1;
   background: #1a1a1a;
   border: 1px solid #222;
-  color: #666;
+  color: #9a9a9a;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.4rem 0.5rem;
@@ -181,7 +197,7 @@
 
 .app-footer {
   font-size: 0.75rem;
-  color: #555;
+  color: #999;
   text-align: center;
   padding: 0.5rem 1rem 1rem;
   border-top: 1px solid #222;

@@ -22,7 +22,14 @@ export default function Tamagotchi({ state, level, progress, totalXP, config, ev
         <span className="tamagotchi-level-number">Nivel {level}</span>
       </div>
 
-      <div className="tamagotchi-xp-bar">
+      <div
+        className="tamagotchi-xp-bar"
+        role="progressbar"
+        aria-label={`Progreso hacia el nivel ${level + 1}`}
+        aria-valuemin={0}
+        aria-valuemax={300}
+        aria-valuenow={progress}
+      >
         <div
           className="tamagotchi-xp-fill"
           style={{

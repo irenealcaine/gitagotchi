@@ -41,6 +41,7 @@ export default function RepoList({ repos, events }) {
           >
             <div className="repo-item-header">
               <span className="repo-item-name">{repo.name}</span>
+              <span className="visually-hidden">(se abre en una pestaña nueva)</span>
               {repo.language && (
                 <span className="repo-item-lang">{repo.language}</span>
               )}
