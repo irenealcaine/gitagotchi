@@ -27,20 +27,20 @@ export default function Tamagotchi({ state, level, progress, totalXP, config, ev
         role="progressbar"
         aria-label={`Progreso hacia el nivel ${level + 1}`}
         aria-valuemin={0}
-        aria-valuemax={300}
+        aria-valuemax={150}
         aria-valuenow={progress}
       >
         <div
           className="tamagotchi-xp-fill"
           style={{
-            width: `${(progress / 300) * 100}%`,
+            width: `${(progress / 150) * 100}%`,
             backgroundColor: config.color,
           }}
         />
       </div>
 
       <div className="tamagotchi-xp-text">
-        {progress} / 300 XP · {totalXP} XP
+        {progress} / 150 XP · {totalXP} XP
       </div>
 
     </div>

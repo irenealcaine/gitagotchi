@@ -1,4 +1,4 @@
-const XP_PER_LEVEL = 300
+const XP_PER_LEVEL = 150
 const XP_COMMIT = 10
 const XP_PR = 50
 const XP_REPO = 100
