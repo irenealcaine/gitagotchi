@@ -5,6 +5,8 @@
   justify-content: center;
   padding: 1rem;
   gap: 1rem;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .tamagotchi-pet-wrapper {
@@ -74,8 +76,8 @@
 
 .tamagotchi-glow {
   position: absolute;
-  width: 190px;
-  height: 190px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   opacity: 0.15;
   filter: blur(20px);

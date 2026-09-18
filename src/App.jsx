@@ -138,6 +138,7 @@ function App() {
                 id="panel-xp"
                 role="tabpanel"
                 aria-labelledby="tab-xp"
+                className="sidebar-panel"
                 hidden={sidebarTab !== "xp"}
               >
                 <XpHistory events={events} repos={repos} />
@@ -146,6 +147,7 @@ function App() {
                 id="panel-achievements"
                 role="tabpanel"
                 aria-labelledby="tab-achievements"
+                className="sidebar-panel"
                 hidden={sidebarTab !== "achievements"}
               >
                 <Achievements

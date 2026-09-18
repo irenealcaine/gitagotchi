@@ -1,6 +1,10 @@
 .xp-history {
   width: 100%;
   padding: 0 0 1rem;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .xp-history-title {
@@ -14,8 +18,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  max-height: 400px;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
 }
 
 .xp-history-list::-webkit-scrollbar {
